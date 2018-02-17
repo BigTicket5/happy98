@@ -1,0 +1,22 @@
+.header{
+    padding:1em;
+    color: white;
+    background-color: black;
+    clear:left;
+    text-align: center;
+}
+.nav {
+    float:left;
+    margin: 0;
+    height: 100%;
+    width: 10%;
+    position: fixed;
+}
+
+.footer{
+    padding:1em;
+    color: white;
+    background-color: black;
+    clear:left;
+    text-align: center; 
+}

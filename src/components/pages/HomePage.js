@@ -4,13 +4,23 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {logout} from "../../actions/logout";
 import Sidebar from '../Sidebar/Sidebar';
+import  './../../resource/css/style.css';
 const HomePage=({ isAuthenticated ,logout})=>(
 
-	<div className="ui container">
-		<h1>Home Page</h1>
-		{isAuthenticated? (<button onClick={()=>logout()}>Logout</button>):(<Link to="/login">Login</Link>)}
-		<Sidebar/>
+<div className="">
+	<div className="header">
+			{isAuthenticated? (<button onClick={()=>logout()}>Logout</button>):(<Link to="/login">Login</Link>)}
 	</div>
+	<div>
+		<div className="nav">
+        <Sidebar/>
+		</div>
+		<div className="content-inner"></div>
+	</div>
+	<div className="footer">
+		
+	</div>
+</div>
 );
 
 

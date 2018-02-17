@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import SideBar from 'react-sidebar-mzz';
 const links = [{ name: "Home", linkdir: "/home" },
     { name: "SubBilling", linkdir: "/sub_billing" },

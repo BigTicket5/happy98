@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch,Route,BrowserRouter } from 'react-router-dom';
-import { render } from 'react-dom'
 import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
 import SubBilling from './components/pages/SubBillingPage';
