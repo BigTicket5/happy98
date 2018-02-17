@@ -7,8 +7,8 @@ class PayForm extends React.Component{
 		super();
 		this.state = {
 			divStyle:{
-				width:'60%',
-				margin:'5px 0 0 20%'
+				width:'80%',
+				margin:'5px 0 0 10%'
 			},
 			sum:0.0,
 			billper:0.0,

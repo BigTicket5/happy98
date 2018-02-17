@@ -4,13 +4,14 @@
     background-color: black;
     clear:left;
     text-align: center;
+    height: 5vh;
 }
 .nav {
     float:left;
     margin: 0;
     height: 100%;
     width: 10%;
-    position: fixed;
+    height:90vh;
 }
 
 .footer{
@@ -19,4 +20,29 @@
     background-color: black;
     clear:left;
     text-align: center; 
+    height: 5vh;
 }
+
+.wrapper{
+    display: flex;  
+    flex-direction: column;
+    font-weight: bold;
+    text-align: center;
+    height: 100vh;
+    flex:3;
+}
+
+.wrapper_content{
+    display: flex;  
+    flex-direction: row;
+    font-weight: bold;
+    text-align: center;
+    clear: both;
+    height: 90vh;
+    flex:1;
+}
+
+.content-inner{
+    width:90%;
+}
+

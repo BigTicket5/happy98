@@ -5,17 +5,35 @@ import {saveRecords} from '../../actions/save';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import Sidebar from '../Sidebar/Sidebar';
+import {Link} from "react-router-dom";
+import {logout} from "../../actions/logout";
 class SubBillingPage extends React.Component{
 	init=()=>this.props.initrent();
 	submit=data=>this.props.saveRecords(data).then(()=>this.props.history.push("/details"));
 	render(){
 		return (
-			<div>
-				<Sidebar/>
-				<PayForm init={this.init} submit = {this.submit} />
+			<div className="wrapper">
+				<div className="header">
+					{this.props.isAuthenticated? (<button onClick={()=>logout()}>Logout</button>):(<Link to="/login">Login</Link>)}
+				</div>
+				<div className="wrapper_content">
+					<div className="nav">
+					<Sidebar/>
+					</div>
+					<div className="content-inner">
+						<PayForm init={this.init} submit = {this.submit} />
+					</div>
+				</div>
+				<div className="footer">Copy Right@2018</div>
 			</div>
 		);
 	}
+}
+
+function mapStateProps(state){
+	return{
+		isAuthenticated:!!state.user.token
+	};
 }
 
 SubBillingPage.propTypes = {
@@ -23,6 +41,7 @@ SubBillingPage.propTypes = {
 		push: PropTypes.func.isRequired
 	}).isRequired,
 	initrent: PropTypes.func.isRequired,
-	saveRecords: PropTypes.func.isRequired
+	saveRecords: PropTypes.func.isRequired,
+	isAuthenticated: PropTypes.bool.isRequired
 }
-export default connect(null,{initrent,saveRecords})(SubBillingPage);
+export default connect(mapStateProps,{initrent,saveRecords})(SubBillingPage);
