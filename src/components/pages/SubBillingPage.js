@@ -10,11 +10,12 @@ import {logout} from "../../actions/logout";
 class SubBillingPage extends React.Component{
 	init=()=>this.props.initrent();
 	submit=data=>this.props.saveRecords(data).then(()=>this.props.history.push("/details"));
+	lout=()=>this.props.logout();
 	render(){
 		return (
 			<div className="wrapper">
 				<div className="header">
-					{this.props.isAuthenticated? (<button onClick={()=>logout()}>Logout</button>):(<Link to="/login">Login</Link>)}
+					{this.props.isAuthenticated? (<button onClick={this.lout}>Logout</button>):(<Link to="/login">Login</Link>)}
 				</div>
 				<div className="wrapper_content">
 					<div className="nav">
@@ -41,7 +42,8 @@ SubBillingPage.propTypes = {
 		push: PropTypes.func.isRequired
 	}).isRequired,
 	initrent: PropTypes.func.isRequired,
+	logout: PropTypes.func.isRequired,
 	saveRecords: PropTypes.func.isRequired,
 	isAuthenticated: PropTypes.bool.isRequired
 }
-export default connect(mapStateProps,{initrent,saveRecords})(SubBillingPage);
+export default connect(mapStateProps,{initrent,saveRecords,logout})(SubBillingPage);
