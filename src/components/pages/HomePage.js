@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {logout} from "../../actions/logout";
 import Sidebar from '../Sidebar/Sidebar';
 import  './../../resource/css/style.css';
-const HomePage=({ isAuthenticated ,logout})=>(
+const HomePage=({ isAuthenticated ,logout,uRole})=>(
 
 <div className="">
 	<div className="header">
@@ -13,7 +13,7 @@ const HomePage=({ isAuthenticated ,logout})=>(
 	</div>
 	<div>
 		<div className="nav">
-        <Sidebar/>
+        	<Sidebar role = {uRole}/>
 		</div>
 		<div className="content-inner"></div>
 	</div>
@@ -26,12 +26,14 @@ const HomePage=({ isAuthenticated ,logout})=>(
 
 HomePage.propTypes = {
 	isAuthenticated: PropTypes.bool.isRequired,
-	logout: PropTypes.func.isRequired 
+	logout: PropTypes.func.isRequired,
+	uRole: PropTypes.object.isRequired
 };
 
 function mapStateProps(state){
 	return{
-		isAuthenticated:!!state.user.token
+		isAuthenticated:!!state.user.token,
+		uRole:state.user.role,
 	};
 }
 export default connect(mapStateProps,{logout:logout})(HomePage);

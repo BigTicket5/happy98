@@ -17,7 +17,7 @@ const store = createStore(
 );
 
 if(localStorage.happy98JWT){
-	const user = {token: localStorage.happy98JWT};
+	const user = {token: localStorage.happy98JWT,role:JSON.parse(localStorage.role)};
 	store.dispatch(userLoggedIn(user));
 }
 ReactDOM.render(<BrowserRouter>

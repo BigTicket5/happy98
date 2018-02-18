@@ -9,7 +9,8 @@ class LoginForm extends React.Component{
 	state = {
 		data:{
 			email:'',
-			password:''
+			password:'',
+			role:{}
 		},
 		loading:false,
 		errors:{}

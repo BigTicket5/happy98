@@ -19,7 +19,7 @@ class SubBillingPage extends React.Component{
 				</div>
 				<div className="wrapper_content">
 					<div className="nav">
-					<Sidebar/>
+						<Sidebar role={this.props.uRole}/>
 					</div>
 					<div className="content-inner">
 						<PayForm init={this.init} submit = {this.submit} />
@@ -33,7 +33,8 @@ class SubBillingPage extends React.Component{
 
 function mapStateProps(state){
 	return{
-		isAuthenticated:!!state.user.token
+		isAuthenticated:!!state.user.token,
+		uRole:state.user.role
 	};
 }
 
@@ -44,6 +45,7 @@ SubBillingPage.propTypes = {
 	initrent: PropTypes.func.isRequired,
 	logout: PropTypes.func.isRequired,
 	saveRecords: PropTypes.func.isRequired,
-	isAuthenticated: PropTypes.bool.isRequired
+	isAuthenticated: PropTypes.bool.isRequired,
+	uRole: PropTypes.string.isRequired
 }
 export default connect(mapStateProps,{initrent,saveRecords,logout})(SubBillingPage);

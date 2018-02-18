@@ -8,6 +8,7 @@ export const userLoggedIn = (user)=>({
 
 export const login=(credentials)=>dispatch=>
 	api.user.login(credentials).then(user=>{
-		localStorage.happy98JWT = user.token;
+		localStorage.setItem('happy98JWT',user.token);
+		localStorage.setItem('role',JSON.stringify(user.role));
 		dispatch(userLoggedIn(user));
 });
