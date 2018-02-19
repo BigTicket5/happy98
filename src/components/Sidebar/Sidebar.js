@@ -7,7 +7,8 @@ class Sidebar extends React.Component{
         if(role!==undefined) roleId = this.props.role.roleId;
         const links =(roleId!==1)?[]:[{ name: "Home", linkdir: "/home" },
         { name: "SubBilling", linkdir: "/sub_billing" },
-        { name: "Info", linkdir: "/info" }];
+        { name: "Info", linkdir: "/info" },
+        { name:"Management",linkdir:"/management"}];
         return (
             <SideBar links = {links}/>
         );
