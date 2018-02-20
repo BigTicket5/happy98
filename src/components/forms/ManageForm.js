@@ -5,18 +5,48 @@ import PropTypes from 'prop-types';
 class ManageForm extends React.Component{
     constructor(){
         super();
+        this.addRow = this.addRow.bind(this);
         this.state={
-            loading:false
+            loading:false,
+            rows:[]
         }
     }
+
+    addRow(){
+        var nextState = this.state;
+        var row = {
+            name:'',
+            fee:0,
+            roomNo:'',
+            gender:'',
+            contactNo:''
+        }
+        nextState.rows.push(row);
+        this.setState(nextState);
+    };
+    componentDidMount(){
+		this.props.init().then(tenantinit=>{
+            var currows = this.state.rows;
+            if(tenantinit!==undefined){
+                currows.push(tenantinit);
+                this.setState({rows:currows});
+            }
+		})
+	};
     render(){
         return(
             <div>
                 <div className="title">
-                    <div className="title-left"><Icon name='users'size="big" />Tenant List</div><div className="title-right"><Button inverted color='orange'>New</Button><Button inverted color='orange'>Save</Button></div>
+                    <div className="title-left">
+                        <Icon name='users'size="big" />Tenant List
+                    </div>
+                    <div className="title-right">
+                        <Button inverted color='orange' type="button" onClick={this.addRow}>New</Button>
+                        <Button inverted color='orange' type="button" >Save</Button>
+                    </div>
                 </div>
                 <Form loading={this.state.loading}>
-                    <Table  ui celled selectable sortable inverted table >
+                    <Table  ui celled selectable sortable striped table>
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Name</Table.HeaderCell>
@@ -28,6 +58,14 @@ class ManageForm extends React.Component{
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
+                        {this.state.rows.map((row,key) =>{return (<Table.Row key = {key}>
+                        <Table.Cell><Input fluid defaultValue={row.name}></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.fee}></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.roomNo}></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.gender}></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.contactNo}></Input></Table.Cell>
+                        <Table.Cell><Button/></Table.Cell>
+                        </Table.Row>)}) }
                     </Table.Body>
                     <Table.Footer>
                     <Table.Row>

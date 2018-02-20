@@ -6,8 +6,10 @@ import {Link} from "react-router-dom";
 import {logout} from "../../actions/logout";
 import ManageForm from "../forms/ManageForm";
 import { Divider } from 'semantic-ui-react';
+import {inittenant} from '../../actions/init';
 class ManagementPage extends React.Component{
     lout=()=>this.props.logout();
+    init=()=>this.props.inittenant();
 	render(){
 		return (
 			<div className="wrapper">
@@ -25,7 +27,7 @@ class ManagementPage extends React.Component{
                         </div>
                         <Divider fitted></Divider>
                         <div className="table_frame">
-                           <ManageForm/> 
+                           <ManageForm init={this.init}/> 
                         </div>
                     </div>
                 </div>
@@ -47,7 +49,8 @@ ManagementPage.propTypes = {
 		push: PropTypes.func.isRequired
     }).isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
-	uRole: PropTypes.string.isRequired
+    uRole: PropTypes.string.isRequired,
+    inittenant: PropTypes.func.isRequired
 }
 
-export default connect(mapStateProps,{logout})(ManagementPage);
+export default connect(mapStateProps,{logout,inittenant})(ManagementPage);
