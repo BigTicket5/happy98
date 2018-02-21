@@ -68,3 +68,6 @@
     text-align: right;
 }
 
+.tenant_table_input>input{
+    cursor: pointer;
+}

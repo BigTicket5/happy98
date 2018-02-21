@@ -26,10 +26,8 @@ class ManageForm extends React.Component{
     };
     componentDidMount(){
 		this.props.init().then(tenantinit=>{
-            var currows = this.state.rows;
             if(tenantinit!==undefined){
-                currows.push(tenantinit);
-                this.setState({rows:currows});
+                this.setState({rows:tenantinit});
             }
 		})
 	};
@@ -59,12 +57,12 @@ class ManageForm extends React.Component{
                     </Table.Header>
                     <Table.Body>
                         {this.state.rows.map((row,key) =>{return (<Table.Row key = {key}>
-                        <Table.Cell><Input fluid defaultValue={row.name}></Input></Table.Cell>
-                        <Table.Cell><Input fluid defaultValue={row.fee}></Input></Table.Cell>
-                        <Table.Cell><Input fluid defaultValue={row.roomNo}></Input></Table.Cell>
-                        <Table.Cell><Input fluid defaultValue={row.gender}></Input></Table.Cell>
-                        <Table.Cell><Input fluid defaultValue={row.contactNo}></Input></Table.Cell>
-                        <Table.Cell><Button/></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.tenantName} className="tenant_table_input" readOnly></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.rentFee} className="tenant_table_input" readOnly></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.roomNo} className="tenant_table_input" readOnly></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.gender} className="tenant_table_input" readOnly></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.contactNo} className="tenant_table_input" readOnly></Input></Table.Cell>
+                        <Table.Cell><Button>Edit</Button><Button>Del</Button></Table.Cell>
                         </Table.Row>)}) }
                     </Table.Body>
                     <Table.Footer>
