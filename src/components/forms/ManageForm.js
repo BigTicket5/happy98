@@ -44,7 +44,7 @@ class ManageForm extends React.Component{
                     </div>
                 </div>
                 <Form loading={this.state.loading}>
-                    <Table  ui celled selectable sortable striped table>
+                    <Table  ui celled selectable sortable striped fixed table>
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Name</Table.HeaderCell>
