@@ -8,8 +8,10 @@ class ManageForm extends React.Component{
         this.addRow = this.addRow.bind(this);
         this.state={
             loading:false,
-            rows:[]
+            rows:[],
+            readOnly:[]
         }
+        this.state.readOnly = true;
     }
 
     addRow(){
@@ -28,9 +30,18 @@ class ManageForm extends React.Component{
 		this.props.init().then(tenantinit=>{
             if(tenantinit!==undefined){
                 this.setState({rows:tenantinit});
+                var ronly = [];
+                for(var i=0;i<tenantinit.length;i++){
+                    ronly[i] = true;
+                }
+                this.setState({readOnly:ronly});
             }
 		})
-	};
+    };
+    _click=(row)=>{
+        this.state.readOnly[row] = !this.state.readOnly[row];
+        this.setState({readOnly:this.state.readOnly});
+     };
     render(){
         return(
             <div>
@@ -57,12 +68,12 @@ class ManageForm extends React.Component{
                     </Table.Header>
                     <Table.Body>
                         {this.state.rows.map((row,key) =>{return (<Table.Row key = {key}>
-                        <Table.Cell><Input fluid defaultValue={row.tenantName} className="tenant_table_input" readOnly></Input></Table.Cell>
-                        <Table.Cell><Input fluid defaultValue={row.rentFee} className="tenant_table_input" readOnly></Input></Table.Cell>
-                        <Table.Cell><Input fluid defaultValue={row.roomNo} className="tenant_table_input" readOnly></Input></Table.Cell>
-                        <Table.Cell><Input fluid defaultValue={row.gender} className="tenant_table_input" readOnly></Input></Table.Cell>
-                        <Table.Cell><Input fluid defaultValue={row.contactNo} className="tenant_table_input" readOnly></Input></Table.Cell>
-                        <Table.Cell><Button>Edit</Button><Button>Del</Button></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.tenantName} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.rentFee} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.roomNo} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.gender} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.contactNo} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
+                        <Table.Cell><Button onClick={()=>{this._click(key);}}>Edit</Button><Button>Del</Button></Table.Cell>
                         </Table.Row>)}) }
                     </Table.Body>
                     <Table.Footer>
