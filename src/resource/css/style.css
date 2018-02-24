@@ -71,3 +71,7 @@
 .tenant_table_input>input{
     cursor: pointer;
 }
+
+.tenant_table_button_hide{
+    display: none;
+}

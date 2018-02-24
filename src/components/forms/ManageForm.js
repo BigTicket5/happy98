@@ -9,7 +9,8 @@ class ManageForm extends React.Component{
         this.state={
             loading:false,
             rows:[],
-            readOnly:[]
+            readOnly:[],
+            shouldHide:[]
         }
         this.state.readOnly = true;
     }
@@ -31,10 +32,12 @@ class ManageForm extends React.Component{
             if(tenantinit!==undefined){
                 this.setState({rows:tenantinit});
                 var ronly = [];
+                var hide = [];
                 for(var i=0;i<tenantinit.length;i++){
                     ronly[i] = true;
+                    hide[i] = 'none';
                 }
-                this.setState({readOnly:ronly});
+                this.setState({readOnly:ronly,shouldHide:hide});
             }
 		})
     };
@@ -73,7 +76,7 @@ class ManageForm extends React.Component{
                         <Table.Cell><Input fluid defaultValue={row.roomNo} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
                         <Table.Cell><Input fluid defaultValue={row.gender} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
                         <Table.Cell><Input fluid defaultValue={row.contactNo} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
-                        <Table.Cell><Button onClick={()=>{this._click(key);}}>Edit</Button><Button>Del</Button></Table.Cell>
+                        <Table.Cell><Button onClick={()=>{this._click(key);}}>Edit</Button><Button style={{display: this.state.shouldHide[key]}}>Save</Button><Button>Del</Button></Table.Cell>
                         </Table.Row>)}) }
                     </Table.Body>
                     <Table.Footer>
