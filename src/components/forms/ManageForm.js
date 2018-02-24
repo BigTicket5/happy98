@@ -35,15 +35,16 @@ class ManageForm extends React.Component{
                 var hide = [];
                 for(var i=0;i<tenantinit.length;i++){
                     ronly[i] = true;
-                    hide[i] = 'none';
+                    hide[i] = true;
                 }
                 this.setState({readOnly:ronly,shouldHide:hide});
             }
 		})
     };
-    _click=(row)=>{
+    _editclick=(row)=>{
         this.state.readOnly[row] = !this.state.readOnly[row];
-        this.setState({readOnly:this.state.readOnly});
+        this.state.shouldHide[row] = !this.state.shouldHide[row];
+        this.setState({readOnly:this.state.readOnly,shouldHide:this.state.shouldHide});
      };
     render(){
         return(
@@ -76,7 +77,7 @@ class ManageForm extends React.Component{
                         <Table.Cell><Input fluid defaultValue={row.roomNo} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
                         <Table.Cell><Input fluid defaultValue={row.gender} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
                         <Table.Cell><Input fluid defaultValue={row.contactNo} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
-                        <Table.Cell><Button onClick={()=>{this._click(key);}}>Edit</Button><Button style={{display: this.state.shouldHide[key]}}>Save</Button><Button>Del</Button></Table.Cell>
+                        <Table.Cell><Button onClick={()=>{this._editclick(key);}} style={!this.state.shouldHide[key]?{display:'none'}:{display:'inline'}}>Edit</Button><Button style={this.state.shouldHide[key]?{display:'none'}:{display:'inline'}}>Save</Button><Button>Del</Button></Table.Cell>
                         </Table.Row>)}) }
                     </Table.Body>
                     <Table.Footer>
