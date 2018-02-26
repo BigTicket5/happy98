@@ -7,9 +7,11 @@ import {logout} from "../../actions/logout";
 import ManageForm from "../forms/ManageForm";
 import { Divider } from 'semantic-ui-react';
 import {inittenant} from '../../actions/init';
+import {saveOneTenant} from '../../actions/save';
 class ManagementPage extends React.Component{
     lout=()=>this.props.logout();
     init=()=>this.props.inittenant();
+    submit=data=>this.props.saveOneTenant(data).then(()=>this.props.history.push("/details"));
 	render(){
 		return (
 			<div className="wrapper">
@@ -27,7 +29,7 @@ class ManagementPage extends React.Component{
                         </div>
                         <Divider fitted></Divider>
                         <div className="table_frame">
-                           <ManageForm init={this.init}/> 
+                           <ManageForm init={this.init} submit = {this.submit}/> 
                         </div>
                     </div>
                 </div>
@@ -50,7 +52,8 @@ ManagementPage.propTypes = {
     }).isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     uRole: PropTypes.string.isRequired,
-    inittenant: PropTypes.func.isRequired
+    inittenant: PropTypes.func.isRequired,
+    saveOneTenant: PropTypes.func.isRequired
 }
 
-export default connect(mapStateProps,{logout,inittenant})(ManagementPage);
+export default connect(mapStateProps,{logout,inittenant,saveOneTenant})(ManagementPage);

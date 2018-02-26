@@ -42,12 +42,15 @@ class ManageForm extends React.Component{
 		})
     };
     _editclick=(index)=>{
-        this.state.readOnly[index] = !this.state.readOnly[index];
-        this.state.shouldHide[index] = !this.state.shouldHide[index];
+        var rflag = this.state.readOnly[index];
+        this.state.readOnly[index] = !rflag;
+        var hflag = this.state.shouldHide[index];
+        this.state.shouldHide[index] = !hflag;
         this.setState({readOnly:this.state.readOnly,shouldHide:this.state.shouldHide});
      };
      _saveclick=(index)=>{
          this._editclick(index);
+         this.tenantSave(index);
      };
      tenantSave=(index)=>{
         this.props.submit(this.state.rows[index]);
@@ -111,6 +114,10 @@ class ManageForm extends React.Component{
             </div>
         );
     }
+}
+
+ManageForm.propTypes={
+    submit:PropTypes.func.isRequired
 }
 
 export default ManageForm;
