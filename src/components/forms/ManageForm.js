@@ -52,6 +52,10 @@ class ManageForm extends React.Component{
          this._editclick(index);
          this.tenantSave(index);
      };
+    _handleChange (index,col,e) {
+        this.state.rows[index][col] = e.target.value; 
+        this.setState({rows:this.state.rows});
+    }
      tenantSave=(index)=>{
         this.props.submit(this.state.rows[index]);
      }
@@ -81,11 +85,11 @@ class ManageForm extends React.Component{
                     </Table.Header>
                     <Table.Body>
                         {this.state.rows.map((row,key) =>{return (<Table.Row key = {key}>
-                        <Table.Cell><Input fluid defaultValue={row.tenantName} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
-                        <Table.Cell><Input fluid defaultValue={row.rentFee} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
-                        <Table.Cell><Input fluid defaultValue={row.roomNo} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
-                        <Table.Cell><Input fluid defaultValue={row.gender} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
-                        <Table.Cell><Input fluid defaultValue={row.contactNo} className="tenant_table_input" readOnly={this.state.readOnly[key]}></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.tenantName} className="tenant_table_input" readOnly={this.state.readOnly[key]} onChange={event=>this._handleChange(key,'tenantName',event)}></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.rentFee} className="tenant_table_input" readOnly={this.state.readOnly[key]} onChange={event=>this._handleChange(key,'rentFee',event)}></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.roomNo} className="tenant_table_input" readOnly={this.state.readOnly[key]} onChange={event=>this._handleChange(key,'roomNo',event)}></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.gender} className="tenant_table_input" readOnly={this.state.readOnly[key]} onChange={event=>this._handleChange(key,'gender',event)}></Input></Table.Cell>
+                        <Table.Cell><Input fluid defaultValue={row.contactNo} className="tenant_table_input" readOnly={this.state.readOnly[key]} onChange={event=>this._handleChange(key,'contactNo',event)}></Input></Table.Cell>
                         <Table.Cell><Button onClick={()=>{this._editclick(key);}} style={!this.state.shouldHide[key]?{display:'none'}:{display:'inline'}}>Edit</Button><Button onClick={()=>{this._saveclick(key);}} style={this.state.shouldHide[key]?{display:'none'}:{display:'inline'}}>Save</Button><Button>Del</Button></Table.Cell>
                         </Table.Row>)}) }
                     </Table.Body>
