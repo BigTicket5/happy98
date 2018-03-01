@@ -53,10 +53,12 @@ class ManageForm extends React.Component{
          this.tenantSave(index);
      };
     _handleChange (index,col,e) {
+        //
         this.state.rows[index][col] = e.target.value; 
         this.setState({rows:this.state.rows});
     }
      tenantSave=(index)=>{
+        console.log(this.state.rows[index]);
         this.props.submit(this.state.rows[index]);
      }
     render(){
