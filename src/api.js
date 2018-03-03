@@ -7,6 +7,7 @@ export default{
 		init:()=>axios.get("http://localhost:8000/initRent").then(res=>res.data.rentinit),
 		save:(records)=>axios.post("http://localhost:8000/saveRecords",{records}).then(res=>res.data.info),
 		initTenant:()=>axios.get("http://localhost:8000/initTenant").then(res=>res.data.tenantinit),
-		saveTenant:(tenant)=>axios.post("http://localhost:8000/saveTenant",{tenant}).then(res=>res.data.info)
+		saveTenant:(tenant)=>axios.post("http://localhost:8000/saveTenant",{tenant}).then(res=>res.data.info),
+		initRentalProp:(propId)=>axios.get("http://localhost:8000/initProp",{propId}).then(res=>res.data.rentalproperty)
 	}
 };

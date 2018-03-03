@@ -5,12 +5,15 @@ import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import {logout} from "../../actions/logout";
 import ManageForm from "../forms/ManageForm";
+import PropertyForm from "../forms/PropertyForm";
 import { Divider } from 'semantic-ui-react';
 import {inittenant} from '../../actions/init';
+import {initrentalproperty} from '../../actions/init';
 import {saveOneTenant} from '../../actions/save';
 class ManagementPage extends React.Component{
     lout=()=>this.props.logout();
-    init=()=>this.props.inittenant();
+    tenantlistinit=()=>this.props.inittenant();
+    rentalpropertyinit=()=>this.props.initrentalproperty();
     submit=data=>this.props.saveOneTenant(data).then(()=>this.props.history.push("/details"));
 	render(){
 		return (
@@ -25,11 +28,12 @@ class ManagementPage extends React.Component{
                     <div className="wrapper">
                         <div className="table_frame">
                             <div>
+                                <PropertyForm init={this.rentalpropertyinit}/>
                             </div>
                         </div>
                         <Divider fitted></Divider>
                         <div className="table_frame">
-                           <ManageForm init={this.init} submit = {this.submit}/> 
+                           <ManageForm init={this.tenantlistinit} submit = {this.submit}/> 
                         </div>
                     </div>
                 </div>
@@ -53,7 +57,8 @@ ManagementPage.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
     uRole: PropTypes.string.isRequired,
     inittenant: PropTypes.func.isRequired,
+    initrentalproperty: PropTypes.func.isRequired,
     saveOneTenant: PropTypes.func.isRequired
 }
 
-export default connect(mapStateProps,{logout,inittenant,saveOneTenant})(ManagementPage);
+export default connect(mapStateProps,{logout,inittenant,saveOneTenant,initrentalproperty})(ManagementPage);
