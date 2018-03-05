@@ -20,13 +20,15 @@ class PropertyForm extends React.Component{
         return(
             <Grid columns={2} divided>
                 <Grid.Row>
-                    <Grid>
-                <div>
-                    <Input label='Owner' placeholder='mysite.com'/>
-                </div>
-                <div>
-                    <Input label='Address' placeholder='Franklin Street'/>
-                </div>
+                    <Grid.Column>
+                        <div>
+                            <Input label='Owner' placeholder='mysite.com'/>
+                        </div>
+                        <div>
+                            <Input label='Address' placeholder='Franklin Street'/>
+                        </div>
+                    </Grid.Column>
+                </Grid.Row>
             </Grid>
         );
     }
