@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form,Input} from "semantic-ui-react";
+import {Form,Input,Grid} from "semantic-ui-react";
 import PropTypes from 'prop-types';
 
 class PropertyForm extends React.Component{
@@ -18,7 +18,16 @@ class PropertyForm extends React.Component{
     };
     render(){
         return(
-            <div></div>
+            <Grid columns={2} divided>
+                <Grid.Row>
+                    <Grid>
+                <div>
+                    <Input label='Owner' placeholder='mysite.com'/>
+                </div>
+                <div>
+                    <Input label='Address' placeholder='Franklin Street'/>
+                </div>
+            </Grid>
         );
     }
 }
