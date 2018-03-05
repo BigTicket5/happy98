@@ -27,7 +27,6 @@
     display: flex;  
     flex-direction: column;
     font-weight: bold;
-    text-align: center;
     flex:3;
 }
 
@@ -35,7 +34,6 @@
     display: flex;  
     flex-direction: row;
     font-weight: bold;
-    text-align: center;
     clear: both;
     height: 90vh;
     flex:1;
