@@ -26,20 +26,12 @@ class PropertyForm extends React.Component{
                 <Grid.Row>
                     <Grid.Column  width={5}>
                         <Form>
-                            <Form.Field inline>
-                                <label>Owner Name</label>
-                                <Input placeholder='Owner Name' />
-                            </Form.Field>
-                            <Form.Field inline>
-                                <label>Address</label>
-                                <Input placeholder='Address' />
-                            </Form.Field>
-                            <Form.Field inline>
-                                <label>Fee</label>
-                                <Input placeholder='Rent fee' />
-                                <label>Fee</label>
-                                <Input placeholder='Rent fee' />
-                            </Form.Field>
+                            <Form.Input label="Owner Name" placeholder='Owner Name' width={12} />
+                            <Form.Input label="Address" placeholder='Address' width={12}/>
+                            <Form.Group>
+                                <Form.Input label="Fee" placeholder='Rent fee' width={4}/>
+                                <Form.Input label="Type" placeholder='House/Apartment' width={8} />
+                            </Form.Group>
                         </Form>
                     </Grid.Column>
                 </Grid.Row>
